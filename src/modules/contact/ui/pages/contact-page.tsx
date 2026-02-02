@@ -2,8 +2,6 @@
 
 import React from "react"
 
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import Image from "next/image"
 import { Mail, MapPin, Phone, Facebook, Instagram, Twitter } from "lucide-react"
 import { useState } from "react"
@@ -51,17 +49,41 @@ const subjectOptions = [
   "Other",
 ]
 
+import { AlertCircle, CheckCircle } from "lucide-react"
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
+    phone: "",
     subject: "General Inquiry",
     message: "",
   })
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
+    setLoading(true)
+    setMessage(null)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const data = await response.json()
+      if (response.ok) {
+        setMessage({ type: 'success', text: 'Message sent successfully! We\'ll get back to you soon.' })
+        setFormData({ fullName: "", email: "", phone: "", subject: "General Inquiry", message: "" })
+      } else {
+        setMessage({ type: 'error', text: data.error || 'Failed to send message' })
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'An error occurred. Please try again.' })
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -98,45 +120,79 @@ export default function ContactPage() {
             </h2>
           </div>
           <form onSubmit={handleSubmit} className="glass-card p-8">
+            {message && (
+              <div className={`mb-6 p-4 border rounded-lg flex gap-3 ${
+                message.type === 'success' 
+                  ? 'bg-green-500/10 border-green-500/30' 
+                  : 'bg-red-500/10 border-red-500/30'
+              }`}>
+                {message.type === 'success' ? (
+                  <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                ) : (
+                  <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                )}
+                <p className={message.type === 'success' ? 'text-green-500' : 'text-red-500'}>
+                  {message.text}
+                </p>
+              </div>
+            )}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div>
-                <label htmlFor="name" className="block text-champagne/70 text-sm mb-2">
-                  Name
+                <label htmlFor="fullName" className="block text-champagne/70 text-sm mb-2">
+                  Full Name <span className="text-primary">*</span>
                 </label>
                 <input
                   type="text"
-                  id="name"
+                  id="fullName"
                   required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne placeholder-champagne/30 focus:border-primary focus:outline-none transition-colors"
-                  placeholder="Your name"
+                  disabled={loading}
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne placeholder-champagne/30 focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
+                  placeholder="Your full name"
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block text-champagne/70 text-sm mb-2">
-                  Email
+                  Email <span className="text-primary">*</span>
                 </label>
                 <input
                   type="email"
                   id="email"
                   required
+                  disabled={loading}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne placeholder-champagne/30 focus:border-primary focus:outline-none transition-colors"
+                  className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne placeholder-champagne/30 focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
                   placeholder="your@email.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-champagne/70 text-sm mb-2">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  disabled={loading}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne placeholder-champagne/30 focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
+                  placeholder="+61 4xx xxx xxx"
                 />
               </div>
             </div>
             <div className="mb-4">
               <label htmlFor="subject" className="block text-champagne/70 text-sm mb-2">
-                Subject
+                Subject <span className="text-primary">*</span>
               </label>
               <select
                 id="subject"
+                required
+                disabled={loading}
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne focus:border-primary focus:outline-none transition-colors"
+                className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
               >
                 {subjectOptions.map((option) => (
                   <option key={option} value={option}>{option}</option>
@@ -145,23 +201,25 @@ export default function ContactPage() {
             </div>
             <div className="mb-6">
               <label htmlFor="message" className="block text-champagne/70 text-sm mb-2">
-                Message
+                Message <span className="text-primary">*</span>
               </label>
               <textarea
                 id="message"
                 rows={6}
                 required
+                disabled={loading}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne placeholder-champagne/30 focus:border-primary focus:outline-none transition-colors resize-none"
+                className="w-full bg-eerie-black/50 border border-primary/20 px-4 py-3 text-champagne placeholder-champagne/30 focus:border-primary focus:outline-none transition-colors resize-none disabled:opacity-50"
                 placeholder="How can we help you?"
               />
             </div>
             <button
               type="submit"
-              className="w-full px-8 py-3 bg-eerie-black border border-primary text-primary font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors"
+              disabled={loading}
+              className="w-full px-8 py-3 bg-eerie-black border border-primary text-primary font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Message
+              {loading ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </div>
