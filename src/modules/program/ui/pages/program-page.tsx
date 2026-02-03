@@ -1,7 +1,8 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Image from "next/image"
-import { Calendar, MapPin, Download } from "lucide-react"
+import { Calendar, MapPin, Download, Link } from "lucide-react"
+import ScheduleGrid from "../sections/sample-programs-grid"
 
 const programCards = [
   {
@@ -22,65 +23,96 @@ const programCards = [
   },
 ]
 
-const schedule = [
+const sampleSchedule = [
   {
-    date: "Friday, November 1",
-    events: [
-      {
-        time: "7:00 PM",
-        title: "Opening Night Gala: The Last Night",
-        director: "Layla Hassan",
-        venue: "Palace Cinema, Sydney",
-        hasBook: true,
-      },
+    day: 1,
+    title: "Orientation & Foundations",
+    focus: "Context, skills, and community",
+    dayActivities: [
+      "Festival welcome and programme overview",
+      "Foundational filmmaking workshops (story, directing, producing)",
+    ],
+    eveningActivities: [
+      "Opening networking gathering",
+      "Welcome reception",
     ],
   },
   {
-    date: "Saturday, November 2",
-    events: [
-      {
-        time: "2:00 PM",
-        title: "Desert Roads",
-        director: "Omar Khalil",
-        venue: "Dendy Cinema, Sydney",
-        hasBook: true,
-      },
-      {
-        time: "5:00 PM",
-        title: "Short Film Program 1",
-        director: "Various",
-        venue: "Palace Cinema, Sydney",
-        hasBook: true,
-      },
+    day: 2,
+    title: "Mentorship & Talent Exchange",
+    focus: "Individual growth and collaboration",
+    dayActivities: [
+      "One-on-one and small-group mentorship sessions",
+      "Talent exchange across creative roles",
+    ],
+    eveningActivities: [
+      "Curated film screening",
+      "Q&A with filmmakers",
     ],
   },
   {
-    date: "Sunday, November 3",
-    events: [
-      {
-        time: "1:00 PM",
-        title: "Documentary: Threads of Memory",
-        director: "Fatima Al-Qasimi",
-        venue: "Palace Cinema, Sydney",
-        hasBook: false,
-      },
-      {
-        time: "4:00 PM",
-        title: "Between Two Shores",
-        director: "Ahmed Nasser",
-        venue: "Dendy Cinema, Sydney",
-        hasBook: false,
-      },
-      {
-        time: "7:00 PM",
-        title: "Industry Panel: The Future of Arab Cinema",
-        director: null,
-        venue: "Palace Cinema, Sydney",
-        hasBook: false,
-      },
+    day: 3,
+    title: "Industry & Career Pathways",
+    focus: "Professional development",
+    dayActivities: [
+      "Festival strategy and international circulation",
+      "Distribution, markets, and co-production pathways",
+    ],
+    eveningActivities: [
+      "Industry screening",
+    ],
+  },
+  {
+    day: 4,
+    title: "From Development to Practice",
+    focus: "Preparing for production",
+    dayActivities: [
+      "Script development workshops",
+      "Budgeting and production planning",
+    ],
+    eveningActivities: [
+      "Curated screening",
+    ],
+  },
+  {
+    day: 5,
+    title: "Practical Film Production",
+    focus: "Hands-on filmmaking",
+    dayActivities: [
+      "Commencement of practical film production",
+      "On-set mentorship across departments",
+    ],
+    eveningActivities: [
+      "Team check-ins and networking",
+    ],
+  },
+  {
+    day: 6,
+    title: "Completion & Post-Production",
+    focus: "Refinement and reflection",
+    dayActivities: [
+      "Continued filming and pickups",
+      "Post-production workflow introduction",
+    ],
+    eveningActivities: [
+      "Final curated screening",
+    ],
+  },
+  {
+    day: 7,
+    title: "Showcase, Awards & Closing",
+    focus: "Outcomes and celebration",
+    dayActivities: [
+      "Final project presentations",
+      "Group feedback and reflection",
+    ],
+    eveningActivities: [
+      "Film showcase screening",
+      "Awards ceremony and closing reception",
     ],
   },
 ]
+
 
 const venues = [
   {
@@ -102,7 +134,6 @@ const venues = [
 export default function ProgramPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 overflow-hidden">
@@ -149,64 +180,20 @@ export default function ProgramPage() {
 
       {/* Sample Schedule */}
       <section className="py-24 bg-secondary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-primary tracking-[0.2em] uppercase text-sm mb-3">Schedule</p>
+            <p className="text-primary tracking-[0.2em] uppercase text-sm mb-3">
+              Schedule
+            </p>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-champagne">
               Sample Schedule
             </h2>
           </div>
 
-          <div className="space-y-12">
-            {schedule.map((day) => (
-              <div key={day.date}>
-                <div className="flex items-center gap-3 mb-6">
-                  <Calendar className="w-5 h-5 text-primary" />
-                  <h3 className="font-serif text-xl font-semibold text-primary">
-                    {day.date}
-                  </h3>
-                </div>
-                <div className="space-y-4 ml-8">
-                  {day.events.map((event) => (
-                    <div
-                      key={event.title}
-                      className="glass-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                    >
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <span className="text-primary font-medium text-sm">{event.time}</span>
-                          <span className="text-champagne/40">|</span>
-                          <span className="text-champagne/60 text-sm">{event.venue}</span>
-                        </div>
-                        <h4 className="font-serif text-lg text-champagne">
-                          {event.title}
-                        </h4>
-                        {event.director && (
-                          <p className="text-champagne/60 text-sm mt-1">
-                            Dir. {event.director}
-                          </p>
-                        )}
-                      </div>
-                      {event.hasBook && (
-                        <button className="px-6 py-2 border border-primary text-primary text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors">
-                          Book
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <button className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-medium tracking-wide hover:bg-primary/90 transition-colors">
-              <Download className="w-4 h-4" />
-              Download Program Guide
-            </button>
-          </div>
+          <ScheduleGrid sampleSchedule={sampleSchedule} />
         </div>
       </section>
+
 
       {/* Venues Section */}
       <section className="py-24 bg-background">
@@ -244,7 +231,6 @@ export default function ProgramPage() {
         </div>
       </section>
 
-      <Footer />
-    </main>
+    </main >
   )
 }

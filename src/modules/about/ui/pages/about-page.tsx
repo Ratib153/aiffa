@@ -1,5 +1,3 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -53,7 +51,6 @@ const team = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 overflow-hidden">
@@ -126,34 +123,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Festival History Timeline */}
-      <section className="py-24 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-champagne">
-              Festival History
-            </h2>
-          </div>
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-primary/20" />
-            
-            <div className="space-y-8">
-              {timeline.map((item, index) => (
-                <div key={item.year} className="flex items-start gap-8">
-                  <div className="relative flex-shrink-0 w-16 h-16 rounded-full glass-card border border-primary/30 flex items-center justify-center">
-                    <span className="font-serif text-lg font-bold text-primary">{item.year}</span>
-                  </div>
-                  <div className="flex-1 glass-card p-6 mt-2">
-                    <p className="text-champagne/80">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Leadership Team */}
       <section className="py-24 bg-secondary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -166,12 +135,12 @@ export default function AboutPage() {
             {team.map((member) => (
               <div key={member.name} className="text-center">
                 <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-primary/30">
-                  <Image
+                  {/* <Image
                     src={member.image || "/placeholder.svg"}
                     alt={member.name}
                     fill
                     className="object-cover"
-                  />
+                  /> */}
                 </div>
                 <h3 className="font-serif text-xl font-semibold text-champagne mb-1">
                   {member.name}
@@ -207,7 +176,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

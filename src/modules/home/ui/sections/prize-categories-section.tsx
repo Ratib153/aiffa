@@ -14,7 +14,7 @@ const prizes = [
     ),
   },
   {
-    title: "Best Short Film",
+    title: "Best Documentary",
     icon: (
       <svg className="w-10 h-10" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="8" y="12" width="32" height="24" rx="2" />
@@ -23,7 +23,7 @@ const prizes = [
     ),
   },
   {
-    title: "Best Documentary",
+    title: "Best Short Film",
     icon: (
       <svg className="w-10 h-10" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
         <circle cx="24" cy="24" r="16" />
@@ -36,7 +36,7 @@ const prizes = [
     ),
   },
   {
-    title: "Best Animation",
+    title: "Best Director",
     icon: (
       <svg className="w-10 h-10" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M12 36 L24 12 L36 36" />
@@ -46,7 +46,7 @@ const prizes = [
     ),
   },
   {
-    title: "Best Student Film",
+    title: "Best Cinematography",
     icon: (
       <svg className="w-10 h-10" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M6 20 L24 10 L42 20 L24 30 Z" />
@@ -57,7 +57,7 @@ const prizes = [
     ),
   },
   {
-    title: "Cinematography Excellence",
+    title: "Audience Choice Award",
     icon: (
       <svg className="w-10 h-10" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="4" y="16" width="24" height="18" rx="2" />

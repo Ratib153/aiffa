@@ -1,5 +1,3 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { prizeCategories } from "./prizes-page"
 
@@ -13,21 +11,18 @@ export default function PrizeCategoryPage({ slug }: PrizeCategoryPageProps) {
   if (!category) {
     return (
       <main className="min-h-screen bg-background">
-        <Navigation />
         <div className="pt-32 pb-24 text-center">
           <h1 className="text-4xl font-bold text-champagne mb-4">Category Not Found</h1>
           <Link href="/prizes" className="text-primary hover:underline">
             Return to Prizes
           </Link>
         </div>
-        <Footer />
       </main>
     )
   }
 
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
@@ -63,8 +58,6 @@ export default function PrizeCategoryPage({ slug }: PrizeCategoryPageProps) {
           </div>
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

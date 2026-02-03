@@ -1,5 +1,3 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import Image from "next/image"
 import { Film, MessageSquare, Globe } from "lucide-react"
 
@@ -38,7 +36,6 @@ const spotlightCards = [
 export default function OmanPartnershipPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 overflow-hidden">
@@ -179,8 +176,6 @@ export default function OmanPartnershipPage() {
           </p>
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

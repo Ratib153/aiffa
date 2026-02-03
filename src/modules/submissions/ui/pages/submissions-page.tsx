@@ -1,9 +1,9 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Check, Calendar, ChevronDown, ChevronUp } from "lucide-react"
-import { SubmissionsFAQ } from "@/components/submissions/faq"
+import { SubmissionsFAQ } from "../components/faq"
+import SubmissionsForm from "./submissions-form"
 
 const eligibilityRequirements = [
   "Films must be completed after January 1, 2023.",
@@ -58,7 +58,6 @@ const selectionSteps = [
 export default function SubmissionsPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 overflow-hidden">
@@ -139,43 +138,7 @@ export default function SubmissionsPage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Important Dates */}
-      <section className="py-24 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-champagne">
-              Important Dates
-            </h2>
-          </div>
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-4 top-0 bottom-0 w-px bg-primary/20 hidden sm:block" />
-            
-            <div className="space-y-6">
-              {importantDates.map((item, index) => (
-                <div key={item.title} className="flex items-start gap-6 sm:gap-8">
-                  <div className="relative flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 border border-primary flex items-center justify-center hidden sm:flex">
-                    <Calendar className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="flex-1 glass-card p-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <h3 className="font-serif text-lg font-semibold text-champagne">
-                        {item.title}
-                      </h3>
-                      <span className="text-primary font-medium">{item.date}</span>
-                    </div>
-                    {item.feature && (
-                      <p className="text-champagne/60 text-sm mt-2">{item.feature}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      </section>      
 
       {/* Selection Process */}
       <section className="py-24 bg-secondary">
@@ -201,6 +164,8 @@ export default function SubmissionsPage() {
           </div>
         </div>
       </section>
+          
+    <SubmissionsForm/>
 
       {/* FAQs */}
       <section id="faq" className="py-24 bg-background">
@@ -231,8 +196,6 @@ export default function SubmissionsPage() {
           </Link>
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

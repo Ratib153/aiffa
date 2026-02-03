@@ -2,7 +2,9 @@ import React from "react"
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display, Libre_Baskerville } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Navigation } from "@/components/navigation"
 import './globals.css'
+import { Footer } from "@/components/footer"
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -48,8 +50,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${libreBaskerville.variable}`}>
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="font-sans antialiased">
+        <Navigation />
         {children}
+        <Footer/>
         <Analytics />
       </body>
     </html>

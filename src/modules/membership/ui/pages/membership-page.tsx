@@ -1,8 +1,6 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import Image from "next/image"
 import { CalendarDays, Users, MessageSquare, Newspaper, GraduationCap, Award } from "lucide-react"
-import { MembershipForm } from "@/components/membership/membership-form"
+import { MembershipForm } from "@/modules/membership/ui/components/membership-form"
 
 const benefits = [
   {
@@ -40,7 +38,6 @@ const benefits = [
 export default function MembershipPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 overflow-hidden">
@@ -132,8 +129,6 @@ export default function MembershipPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

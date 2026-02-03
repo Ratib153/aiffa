@@ -110,7 +110,6 @@ const juryPanel = [
 export default function PrizesPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-2 overflow-hidden">
@@ -171,70 +170,8 @@ export default function PrizesPage() {
         </div>
       </section>
 
-      {/* Jury Panel */}
-      <section className="py-24 bg-background">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-champagne">
-              Jury Panel
-            </h2>
-          </div>
-          <p className="text-center text-champagne/70 mb-12 max-w-2xl mx-auto">
-            Our distinguished jury panel consists of renowned filmmakers, critics, and industry professionals who bring decades of experience and expertise to the selection process.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {juryPanel.map((member) => (
-              <div key={member.name} className="text-center">
-                <div className="relative w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-2 border-primary/30">
-                  <Image
-                    src={member.image || "/placeholder.svg"}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="font-serif text-xl font-semibold text-champagne mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-primary text-sm mb-3">{member.role}</p>
-                <p className="text-champagne/60 text-sm">{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Gallery Section */}
-      <section className="py-24 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-champagne mb-4">
-              Ceremony Photos & Videos
-            </h2>
-            <p className="text-champagne/70">
-              Relive the magic of our awards ceremonies through photos and videos from past festivals.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="relative aspect-video overflow-hidden group cursor-pointer">
-                <Image
-                  src="/images/ceremony-1.jpg"
-                  alt={`2024 Awards Ceremony ${i}`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-eerie-black/40 group-hover:bg-eerie-black/20 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-champagne text-sm font-medium">View</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <Footer />
     </main>
   )
 }
