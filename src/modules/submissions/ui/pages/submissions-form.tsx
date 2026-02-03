@@ -566,6 +566,19 @@ export default function SubmissionsForm() {
                 <Send className="w-5 h-5" />
                 {isSubmitting ? 'Submitting...' : 'Submit Film'}
               </button>
+
+              <div className="flex items-center justify-center gap-4 my-6">
+                <span className="text-champagne/60 text-sm">or</span>
+              </div>
+
+              <a
+                href="https://filmfreeway.com/ArabInternationalFilmFestivalofAustralia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-background border-2 border-primary hover:bg-primary/10 text-primary font-semibold py-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 text-lg"
+              >
+                Submit via FilmFreeway
+              </a>
             </section>
           </form>
         </div>
