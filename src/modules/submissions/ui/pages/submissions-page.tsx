@@ -6,7 +6,7 @@ import { Check, Calendar, ArrowRight } from "lucide-react"
 import SubmissionsForm from "./submissions-form"
 
 const eligibilityRequirements = [
-  "Films must be completed after January 1, 2023.",
+  "Films must be completed after January 1, 2025.",
   "Director must be of Arab heritage OR film must have significant Arab content.",
   "Films can be in any language (with English subtitles if not in English or Arabic).",
   "All genres and formats accepted (narrative, documentary, experimental, animation).",

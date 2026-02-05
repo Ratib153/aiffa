@@ -3,63 +3,79 @@ import Link from "next/link"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/oman.jpg"
-          alt="Oman landscape"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div 
-          className="absolute inset-0 border-0"
-          style={{ 
-            border: 'none',
-            boxShadow: 'none',
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.1) 10%, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.7) 70%, rgba(255, 255, 255, 0.9) 100%)'
-          }}
-        />
+    <section className="w-full">
+      {/* 1) VIDEO SECTION */}
+      <div
+        className="w-full pt-28 pb-20"
+        style={{ backgroundColor: "#f7f2ed" }} 
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p
+            className="mb-3 text-left text-sm sm:text-base uppercase tracking-widest"
+            style={{ color: "#C9A84F" }}
+          >
+            Experience a Gift for Life
+          </p>
+
+          <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/30 shadow-2xl bg-black/30">
+            <video
+              className="h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/videos/hero-poster.jpg" // optional thumbnail 
+            >
+              <source src="/videos/hero.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
       </div>
 
-      {/* Bottom Fade Overlay */}
-      <div 
-        className="absolute inset-x-0 bottom-0 h-32 pointer-events-none z-20"
-        style={{
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.7) 80%, rgba(255, 255, 255, 1) 100%)'
-        }}
-      />
+      {/* LOGO SECTION */}
+      <div
+        className="w-full pt-2 pb-0"
+        style={{ backgroundColor: "#ffffff" }} 
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+          <Image
+            src="/images/aiffa-logo-full.png"
+            alt="AIFFA – Arab International Film Festival of Australia"
+            width={520}
+            height={200}
+            priority
+            className="h-auto w-[280px] sm:w-[360px] md:w-[460px]"
+          />
+        </div>
+      </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-        {/* Main Heading */}
-        <h1 
-          className="font-libre-baskerville text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] mb-8"
-          style={{ transform: 'scale(0.96)', color: '#FCEFB4' }}
-        >
-          Arab International Film Festival of Australia
-        </h1>
-        
-        {/* Subtitle */}
-        <p className="font-libre-baskerville italic text-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-          Celebrating the rich tapestry of Arab cinema and culture
-        </p>
+      {/* 3) DESCRIPTION + CTA SECTION */}
+      <div
+        className="w-full pt-12 py-10"
+        style={{ backgroundColor: "#f7f2ed" }} 
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="font-libre-baskerville text-center text-sm sm:text-base max-w-3xl mx-auto leading-relaxed text-foreground/80 mb-10">
+            AIFFA was established through a collaboration between the Oman Film Society and the
+            International Film Festival of Australia (IFFA) to connect Omani and Arab filmmakers with
+            Australia on an international platform, supporting youth and emerging talent through
+            creative exchange, skills development, and global industry access.
+          </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/submissions"
-            className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground font-medium tracking-wide hover:bg-primary/90 transition-colors text-center"
-          >
-            Submit Film
-          </Link>
-          <Link
-            href="/program"
-            className="w-full sm:w-auto px-8 py-4 border border-champagne/30 text-champagne font-medium tracking-wide hover:border-primary hover:text-primary transition-colors text-center"
-          >
-            View Program
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/submissions"
+              className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground font-medium tracking-wide hover:bg-primary/90 transition-colors text-center"
+            >
+              Submit Film
+            </Link>
+            <Link
+              href="/program"
+              className="w-full sm:w-auto px-8 py-4 border border-champagne/30 text-champagne font-medium tracking-wide hover:border-primary hover:text-primary transition-colors text-center"
+            >
+              View Program
+            </Link>
+          </div>
         </div>
       </div>
     </section>

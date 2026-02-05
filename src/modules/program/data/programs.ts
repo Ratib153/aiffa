@@ -8,7 +8,7 @@ export const programDays = {
     dayActivities: [
       "Festival welcome and programme overview",
       "Foundational filmmaking workshops (story, directing, producing)",
-      "Introduction to Malaysian and international cinema perspectives",
+      "An Introduction to Omani, Arab, and International Cinema Perspectives",
     ],
     eveningActivities: [
       "Opening networking gathering",
@@ -38,7 +38,7 @@ export const programDays = {
     title: "Industry & Career Pathways",
     focus: "Professional development",
     date: "September 3rd, 2026",
-    venue: "ACMI Melbourne",
+    venue: "HOYTS Melbourne Central",
     dayActivities: [
       "Festival strategy and international circulation",
       "Distribution, markets, and co-production pathways",
@@ -54,7 +54,7 @@ export const programDays = {
     title: "From Development to Practice",
     focus: "Preparing for production",
     date: "September 4th, 2026",
-    venue: "ACMI Melbourne",
+    venue: "HOYTS Melbourne Central",
     dayActivities: [
       "Script development and story refinement workshops",
       "Budgeting, scheduling, and production planning",
@@ -69,7 +69,7 @@ export const programDays = {
     day: 5,
     title: "Practical Film Production",
     focus: "Hands-on filmmaking",
-    date: "September 5th, 2026",
+    date: "September 6-9th, 2026",
     venue: "Multiple Locations",
     dayActivities: [
       "Commencement of practical film production",
@@ -85,8 +85,8 @@ export const programDays = {
     day: 6,
     title: "Completion & Post-Production",
     focus: "Refinement and reflection",
-    date: "September 6th, 2026",
-    venue: "Post-Production Studio",
+    date: "September 10-12th, 2026",
+    venue: "Multiple Locations",
     dayActivities: [
       "Continued filming and pickups",
       "Introduction to editing and post-production workflows",
@@ -101,8 +101,8 @@ export const programDays = {
     day: 7,
     title: "Showcase, Awards & Closing",
     focus: "Outcomes and celebration",
-    date: "September 7th, 2026",
-    venue: "HOYTS Melbourne Central",
+    date: "September 13th, 2026",
+    venue: "Multiple Locations",
     dayActivities: [
       "Final presentation of practical film projects",
       "Group feedback and learning review",

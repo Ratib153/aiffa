@@ -11,8 +11,8 @@ const contactInfo = [
     icon: Mail,
     title: "Email",
     subtitle: "General Inquiries",
-    value: "info@iaffa.org.au",
-    href: "mailto:info@iaffa.org.au",
+    value: " info@aiffa.com.au",
+    href: "mailto: info@aiffa.com.au",
   },
   {
     icon: MapPin,
@@ -31,12 +31,12 @@ const contactInfo = [
 ]
 
 const departmentContacts = [
-  { title: "Film Submissions", email: "submissions@iaffa.org.au" },
-  { title: "Sponsorship & Partnerships", email: "partners@iaffa.org.au" },
-  { title: "Media & Press", email: "press@iaffa.org.au" },
-  { title: "Volunteers", email: "volunteers@iaffa.org.au" },
-  { title: "Tickets & Box Office", email: "tickets@iaffa.org.au" },
-  { title: "General Inquiries", email: "info@iaffa.org.au" },
+  { title: "Film Submissions", email: "submissions@aiffa.com.au" },
+  { title: "Sponsorship & Partnerships", email: "partners@aiffa.com.au" },
+  { title: "Media & Press", email: "press@aiffa.com.au" },
+  { title: "Volunteers", email: "volunteers@aiffa.com.au" },
+  { title: "Tickets & Box Office", email: "tickets@aiffa.com.au" },
+  { title: "General Inquiries", email: "info@aiffa.com.au" },
 ]
 
 const subjectOptions = [
@@ -242,8 +242,8 @@ export default function ContactPage() {
                 Email
               </h3>
               <p className="text-champagne/50 text-sm mb-3">General Inquiries</p>
-              <a href="mailto:info@iaffa.org.au" className="text-primary hover:underline text-sm break-all">
-                info@iaffa.org.au
+              <a href="mailto:info@aiffa.com.au" className="text-primary hover:underline text-sm break-all">
+                info@aiffa.com.au
               </a>
             </div>
           </div>

@@ -124,7 +124,7 @@ export function Footer() {
         {/* Legal Bar */}
         <div className="mt-16 pt-8 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-champagne/40 text-sm">
-            © 2025 International Arab Film Festival of Australia
+            © 2026 Arab International Film Festival of Australia
           </p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="text-champagne/40 hover:text-primary text-sm transition-colors">

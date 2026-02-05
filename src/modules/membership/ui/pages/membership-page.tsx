@@ -115,7 +115,7 @@ export default function MembershipPage() {
           <p className="text-champagne/60">
             Questions? Contact us at{" "}
             <a href="mailto:info@iaffa.com" className="text-primary hover:underline">
-              info@iaffa.com
+              info@aiffa.com.au
             </a>
           </p>
           <div className="mt-4 flex items-center justify-center gap-4 text-sm">

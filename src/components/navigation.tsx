@@ -18,7 +18,10 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent border-0 shadow-none">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 border-0 shadow-none"
+      style={{ backgroundColor: "#0a0a0a" }}
+    >
       {/* Logo - Fixed at far left corner */}
       <Link 
         href="/" 
@@ -36,14 +39,14 @@ export function Navigation() {
       </Link>
       
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-center">
+        <div className="flex h-16 items-center justify-end">
           {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-4 py-3 text-base font-medium text-foreground hover:text-primary transition-colors duration-200"
+                className="px-4 py-3 text-base font-medium transition-colors duration-200 text-[#f7f2ed] hover:text-[#E6C15A]"
               >
                 {item.label}
               </Link>
