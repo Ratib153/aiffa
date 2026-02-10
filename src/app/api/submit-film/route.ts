@@ -11,6 +11,7 @@ interface SubmissionData {
   filmDuration: number;
   category: string;
   genres: string;
+  trailerUrl: string;
   actors: Array<{ fullName: string; role: string; biography: string }>;
   directors: Array<{ fullName: string; role: string; biography: string }>;
   producers: Array<{ fullName: string; role: string; biography: string }>;
@@ -43,6 +44,7 @@ async function appendToSheet(data: SubmissionData, spreadsheetId: string) {
     data.countryOfProduction || "",
     data.yearOfCompletion || "",
     data.genres || "",
+    data.trailerUrl || "",
     // Actors with all details
     data.actors
       .map((a) => `Name: ${a.fullName} | Role: ${a.role} | Bio: ${a.biography}`)
@@ -69,7 +71,7 @@ async function appendToSheet(data: SubmissionData, spreadsheetId: string) {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: "Sheet1!A:Q",
+    range: "Sheet1!A:R",
     valueInputOption: "RAW",
     requestBody: {
       values: [row],
@@ -86,10 +88,39 @@ export async function POST(request: NextRequest) {
       !data.filmTitle ||
       !data.email ||
       !data.filmDuration ||
-      !data.category
+      !data.category ||
+      !data.trailerUrl?.trim()
     ) {
       return NextResponse.json(
-        { message: "Missing required fields" },
+        { message: "Missing required fields (including Trailer URL)" },
+        { status: 400 },
+      );
+    }
+
+    const hasValidActor = data.actors?.some(
+      (a) => (a.fullName?.trim() ?? "") && (a.biography?.trim() ?? "")
+    );
+    const hasValidDirector = data.directors?.some(
+      (d) => (d.fullName?.trim() ?? "") && (d.biography?.trim() ?? "")
+    );
+    const hasValidProducer = data.producers?.some(
+      (p) => (p.fullName?.trim() ?? "") && (p.biography?.trim() ?? "")
+    );
+    if (!hasValidActor) {
+      return NextResponse.json(
+        { message: "At least one actor (with Full Name and Short Biography) is required" },
+        { status: 400 },
+      );
+    }
+    if (!hasValidDirector) {
+      return NextResponse.json(
+        { message: "At least one director (with Full Name and Short Biography) is required" },
+        { status: 400 },
+      );
+    }
+    if (!hasValidProducer) {
+      return NextResponse.json(
+        { message: "At least one producer (with Full Name and Short Biography) is required" },
         { status: 400 },
       );
     }

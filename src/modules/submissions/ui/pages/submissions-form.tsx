@@ -13,6 +13,7 @@ interface SubmissionFormData {
   filmDuration: number
   category: string
   genres: string
+  trailerUrl: string
   actors: Array<{
     fullName: string
     role: string
@@ -65,6 +66,23 @@ export default function SubmissionsForm() {
   const onSubmit = async (data: SubmissionFormData) => {
     if (!data.rightsConfirmation || !data.contentCleared || !data.termsAgreement) {
       setSubmitError('Please confirm all required agreements')
+      return
+    }
+
+    const hasValidActor = data.actors.some((a) => (a.fullName?.trim() ?? '') && (a.biography?.trim() ?? ''))
+    const hasValidDirector = data.directors.some((d) => (d.fullName?.trim() ?? '') && (d.biography?.trim() ?? ''))
+    const hasValidProducer = data.producers.some((p) => (p.fullName?.trim() ?? '') && (p.biography?.trim() ?? ''))
+
+    if (!hasValidActor) {
+      setSubmitError('Please fill at least one actor (e.g. Actor 1 – Full Name and Short Biography are required).')
+      return
+    }
+    if (!hasValidDirector) {
+      setSubmitError('Please fill at least one director (e.g. Director 1 – Full Name and Short Biography are required).')
+      return
+    }
+    if (!hasValidProducer) {
+      setSubmitError('Please fill at least one producer (e.g. Producer 1 – Full Name and Short Biography are required).')
       return
     }
 
@@ -208,6 +226,20 @@ export default function SubmissionsForm() {
                   />
                 </div>
               </div>
+            </section>
+
+            {/* Trailer URL */}
+            <section className="border-b border-champagne/10 pb-8">
+              <label className="block text-sm font-medium text-champagne mb-2">
+                Trailer URL <span className="text-primary">*</span>
+              </label>
+              <input
+                type="url"
+                {...register('trailerUrl', { required: 'Trailer URL is required' })}
+                className="w-full px-4 py-3 bg-white/10 border border-champagne/20 rounded-lg text-champagne placeholder-champagne/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
+                placeholder="e.g., https://youtube.com/watch?v=..."
+              />
+              {errors.trailerUrl && <p className="text-red-400 text-xs mt-1">{errors.trailerUrl.message}</p>}
             </section>
 
             {/* Actors */}
