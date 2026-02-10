@@ -1,4 +1,4 @@
-# IAFFA - International Arab Film Festival of Australia
+# AIFFA - Arab International Film Festival of Australia
 
 ## Baseline UI Verified
 
