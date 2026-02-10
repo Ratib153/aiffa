@@ -12,13 +12,11 @@ interface MembershipData {
   message?: string;
 }
 
-const SPREADSHEET_ID = process.env.GOOGLE_SHEET_MEMBERSHIP_ID;
-
-async function appendToSheet(data: MembershipData) {
+async function appendToSheet(data: MembershipData, spreadsheetId: string) {
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\n/g, "\n"),
+      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
     },
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
@@ -37,7 +35,7 @@ async function appendToSheet(data: MembershipData) {
   ];
 
   await sheets.spreadsheets.values.append({
-    spreadsheetId: SPREADSHEET_ID,
+    spreadsheetId,
     range: "Sheet1!A:H",
     valueInputOption: "RAW",
     requestBody: {
@@ -64,7 +62,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    await appendToSheet(data);
+    const spreadsheetId = process.env.GOOGLE_SHEET_MEMBERSHIP_ID;
+    if (!spreadsheetId) {
+      console.error("GOOGLE_SHEET_MEMBERSHIP_ID missing");
+      return NextResponse.json(
+        { error: "Server configuration error. Check Amplify environment variables." },
+        { status: 500 },
+      );
+    }
+    await appendToSheet(data, spreadsheetId);
     await sendMembershipFormSubmissionReceipt(
       data.email,
       data.fullName,

@@ -21,9 +21,7 @@ interface SubmissionData {
   termsAgreement: boolean;
 }
 
-const SPREADSHEET_ID = process.env.GOOGLE_SHEET_SUBMISSIONS_ID;
-
-async function appendToSheet(data: SubmissionData) {
+async function appendToSheet(data: SubmissionData, spreadsheetId: string) {
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_CLIENT_EMAIL,
@@ -70,7 +68,7 @@ async function appendToSheet(data: SubmissionData) {
   ];
 
   await sheets.spreadsheets.values.append({
-    spreadsheetId: SPREADSHEET_ID,
+    spreadsheetId,
     range: "Sheet1!A:Q",
     valueInputOption: "RAW",
     requestBody: {
@@ -96,17 +94,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log("Attempting to save to Google Sheet...");
+    const spreadsheetId = process.env.GOOGLE_SHEET_SUBMISSIONS_ID;
+    console.log("Attempting to save to Google Sheet...", {
+      hasSpreadsheetId: !!spreadsheetId,
+    });
 
-    if (!SPREADSHEET_ID) {
+    if (!spreadsheetId) {
       return NextResponse.json(
         { message: "Google Sheet not configured" },
         { status: 500 },
       );
     }
 
-    // Save to Google Sheet
-    await appendToSheet(data);
+    await appendToSheet(data, spreadsheetId);
 
     console.log("Successfully saved to Google Sheet");
 
