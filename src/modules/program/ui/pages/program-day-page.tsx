@@ -29,14 +29,7 @@ export function ProgramDayPage({ day }: Props) {
           </Link>
 
           {/* Header */}
-          <div className="flex items-start gap-6">
-            <div className="w-16 h-16 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-primary font-bold text-2xl">
-                {data.day}
-              </span>
-            </div>
-
-            <div>
+          <div>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-champagne mb-4">
                 Day {data.day} – {data.title}
               </h1>
@@ -57,7 +50,6 @@ export function ProgramDayPage({ day }: Props) {
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
@@ -101,17 +93,10 @@ export function ProgramDayPage({ day }: Props) {
             </section>
 
             {/* CTA */}
-            <div className="mt-12 pt-8 border-t border-champagne/10 flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/submissions"
-                className="flex-1 bg-primary hover:bg-primary/90 text-eerie-black font-semibold px-8 py-4 rounded-lg text-center transition-colors"
-              >
-                Submit Your Film
-              </Link>
-
+            <div className="mt-12 pt-8 border-t border-champagne/10">
               <Link
                 href="/program"
-                className="flex-1 border-2 border-primary text-primary hover:bg-primary hover:text-eerie-black font-semibold px-8 py-4 rounded-lg text-center transition-all"
+                className="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-eerie-black font-semibold px-8 py-4 rounded-lg text-center transition-all"
               >
                 View All Days
               </Link>

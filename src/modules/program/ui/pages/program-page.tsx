@@ -1,106 +1,14 @@
 import Image from "next/image"
+import { programDays } from "@/modules/program/data/programs"
 import ScheduleGrid from "../sections/sample-programs-grid"
 
-const sampleSchedule = [
-  {
-    day: 1,
-    title: "Orientation & Foundations",
-    focus: "Context, skills, and community",
-    dayActivities: [
-      "Festival welcome and programme overview",
-      "Foundational filmmaking workshops (story, directing, producing)",
-      "Additional workshop session",
-    ],
-    eveningActivities: [
-      "Opening networking gathering",
-      "Welcome reception",
-    ],
-  },
-  {
-    day: 2,
-    title: "Mentorship & Talent Exchange",
-    focus: "Individual growth and collaboration",
-    dayActivities: [
-      "One-on-one and small-group mentorship sessions",
-      "Talent exchange across writing, directing, producing, and crew roles",
-      "Collaborative project discussions",
-    ],
-    eveningActivities: [
-      "Curated film screening",
-      "Q&A with filmmakers",
-    ],
-  },
-  {
-    day: 3,
-    title: "Industry & Career Pathways",
-    focus: "Professional development",
-    dayActivities: [
-      "Sessions on festival strategy and international circulation",
-      "Distribution, markets, and co-production pathways",
-      "Industry networking session",
-    ],
-    eveningActivities: [
-      "Curated film screening",
-      "Industry panel discussion",
-    ],
-  },
-  {
-    day: 4,
-    title: "From Development to Practice",
-    focus: "Preparing for production",
-    dayActivities: [
-      "Script development and pre-production workshops",
-      "Budgeting, scheduling, and production planning",
-      "Production team formation",
-    ],
-    eveningActivities: [
-      "Curated screening",
-      "Production planning sessions",
-    ],
-  },
-  {
-    day: 5,
-    title: "Practical Film Production",
-    focus: "Hands-on filmmaking",
-    dayActivities: [
-      "Commencement of practical film production",
-      "On-set mentorship covering directing, camera, sound, and workflow",
-      "Production documentation",
-    ],
-    eveningActivities: [
-      "Informal team check-ins and networking",
-    ],
-  },
-  {
-    day: 6,
-    title: "Completion & Post-Production Foundations",
-    focus: "Refinement and reflection",
-    dayActivities: [
-      "Continued filming and pickups",
-      "Introduction to editing and post-production workflows",
-      "Post-production planning",
-    ],
-    eveningActivities: [
-      "Final curated film screening",
-      "Reflection and feedback session",
-    ],
-  },
-  {
-    day: 7,
-    title: "Showcase, Awards & Closing",
-    focus: "Outcomes and celebration",
-    dayActivities: [
-      "Final presentation of practical film projects",
-      "Group feedback and learning review",
-      "Talent and industry reflection session",
-    ],
-    eveningActivities: [
-      "Practical Film Showcase screening",
-      "Awards presentation and recognition",
-      "Closing ceremony and networking reception",
-    ],
-  },
-]
+const sampleSchedule = Object.values(programDays).map((d) => ({
+  day: d.day,
+  title: d.title,
+  focus: d.focus,
+  dayActivities: d.dayActivities,
+  eveningActivities: d.eveningActivities,
+}))
 
 export default function ProgramPage() {
   return (

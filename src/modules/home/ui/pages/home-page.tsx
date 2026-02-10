@@ -1,4 +1,3 @@
-import { Footer } from "@/components/footer"
 import { HeroSection } from "@/modules/home/ui/sections/hero-section"
 import { FeaturedFilmsSection } from "@/modules/home/ui/sections/featured-films-section"
 import { ProgramHighlightsSection } from "@/modules/home/ui/sections/program-highlights-section"

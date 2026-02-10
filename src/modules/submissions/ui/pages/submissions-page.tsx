@@ -1,9 +1,17 @@
-
-import React from "react"
+import dynamic from "next/dynamic"
+import { Fragment } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Check, Calendar, ArrowRight } from "lucide-react"
-import SubmissionsForm from "./submissions-form"
+
+const SubmissionsForm = dynamic(() => import("./submissions-form").then((m) => m.default), {
+  ssr: true,
+  loading: () => (
+    <div className="min-h-[400px] flex items-center justify-center text-champagne/60">
+      Loading form...
+    </div>
+  ),
+})
 
 const eligibilityRequirements = [
   "Films must be completed after January 1, 2025.",
@@ -144,7 +152,7 @@ export default function SubmissionsPage() {
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
             {selectionSteps.map((step, index) => (
-              <React.Fragment key={step.title}>
+              <Fragment key={step.title}>
                 <div className="glass-card p-8 text-center flex-1 max-w-xs w-full">
                   <h3 className="font-serif text-xl font-semibold text-champagne mb-3">
                     {step.title}
@@ -154,7 +162,7 @@ export default function SubmissionsPage() {
                 {index < selectionSteps.length - 1 && (
                   <ArrowRight className="w-6 h-6 text-primary/50 flex-shrink-0 hidden md:block" />
                 )}
-              </React.Fragment>
+              </Fragment>
             ))}
           </div>
         </div>

@@ -1,8 +1,7 @@
 "use client"
 
-import React from "react"
-
-import { useState } from "react"
+import { useState, type FormEvent } from "react"
+import { AlertCircle, CheckCircle } from "lucide-react"
 
 const countries = [
   "Australia",
@@ -26,7 +25,6 @@ const interests = [
   "Panels",
 ]
 
-import { AlertCircle, CheckCircle } from "lucide-react"
 const membershipTypes = [
   "Individual",
   "Student",
@@ -47,7 +45,7 @@ export function MembershipForm() {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setMessage(null)

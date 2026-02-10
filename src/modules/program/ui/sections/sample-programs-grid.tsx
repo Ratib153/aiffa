@@ -1,40 +1,30 @@
 "use client"
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
-export default function ScheduleGrid({ sampleSchedule }: { sampleSchedule: any[] }) {
-  const [mounted, setMounted] = useState(false);
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+interface DayItem {
+  day: number
+  title: string
+  focus: string
+  dayActivities: string[]
+  eveningActivities: string[]
+}
 
-  // Prevent server/client mismatch
-  if (!mounted) return null;
-
+export default function ScheduleGrid({ sampleSchedule }: { sampleSchedule: DayItem[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {sampleSchedule.map((day: any) => {
-        const dayActivitiesToShow = day.dayActivities.slice(0, 2);
-        const dayActivitiesMore = day.dayActivities.length > 2;
-        const eveningActivitiesToShow = day.eveningActivities.slice(0, 1);
-        const eveningActivitiesMore = day.eveningActivities.length > 1;
+      {sampleSchedule.map((day) => {
+        const dayActivitiesToShow = day.dayActivities.slice(0, 2)
+        const dayActivitiesMore = day.dayActivities.length > 2
+        const eveningActivitiesToShow = day.eveningActivities.slice(0, 1)
+        const eveningActivitiesMore = day.eveningActivities.length > 1
 
         return (
           <div
-            key={`day-${day.day}`}
+            key={day.day}
             className={`glass-card p-8 rounded-lg flex flex-col h-full ${day.day === 7 ? 'md:col-span-2' : ''}`}
           >
-            {/* Number Badge */}
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-2xl">
-                  {day.day}
-                </span>
-              </div>
-            </div>
-
             {/* Title and Focus */}
             <h3 className="font-libre-baskerville text-xl font-bold text-champagne mb-2 text-center">
               Day {day.day} – {day.title}
@@ -89,8 +79,8 @@ export default function ScheduleGrid({ sampleSchedule }: { sampleSchedule: any[]
               Learn More <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }

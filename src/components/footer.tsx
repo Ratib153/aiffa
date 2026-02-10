@@ -11,7 +11,6 @@ const festivalLinks = [
 const resourceLinks = [
   { label: "Media & Press", href: "/contact" },
   { label: "Partners", href: "/oman-partnership" },
-  { label: "FAQ", href: "/submissions#faq" },
 ]
 
 const connectLinks = [

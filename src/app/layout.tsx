@@ -1,4 +1,4 @@
-import React from "react"
+import type { ReactNode } from "react"
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display, Libre_Baskerville } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
@@ -34,7 +34,6 @@ export const metadata: Metadata = {
     description: 'Celebrating the richness and diversity of Arab cinema in Australia',
     type: 'website',
   },
-    generator: 'v0.app'
 }
 
 export const viewport: Viewport = {
@@ -46,7 +45,7 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${libreBaskerville.variable}`}>

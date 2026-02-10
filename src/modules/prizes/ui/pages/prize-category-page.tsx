@@ -41,17 +41,11 @@ export default function PrizeCategoryPage({ slug }: PrizeCategoryPageProps) {
             {category.detailedDescription}
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/submissions"
-              className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground font-medium tracking-wide hover:bg-primary/90 transition-colors text-center"
-            >
-              Submit Your Film
-            </Link>
+          {/* CTA */}
+          <div className="flex justify-center">
             <Link
               href="/prizes"
-              className="w-full sm:w-auto px-8 py-4 border border-champagne/30 text-champagne font-medium tracking-wide hover:border-primary hover:text-primary transition-colors text-center"
+              className="px-8 py-4 border border-champagne/30 text-champagne font-medium tracking-wide hover:border-primary hover:text-primary transition-colors text-center"
             >
               View All Categories
             </Link>

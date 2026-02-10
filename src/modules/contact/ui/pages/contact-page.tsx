@@ -1,10 +1,8 @@
 "use client"
 
-import React from "react"
-
-import Image from "next/image"
-import { Mail, MapPin, Phone, Facebook, Instagram, Twitter } from "lucide-react"
 import { useState } from "react"
+import Image from "next/image"
+import { Mail, MapPin, Phone, Facebook, Instagram, Twitter, AlertCircle, CheckCircle } from "lucide-react"
 
 const contactInfo = [
   {
@@ -49,7 +47,6 @@ const subjectOptions = [
   "Other",
 ]
 
-import { AlertCircle, CheckCircle } from "lucide-react"
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: "",

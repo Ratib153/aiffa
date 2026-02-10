@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { AlertCircle, Plus, Trash2, Send } from 'lucide-react'
 
