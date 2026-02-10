@@ -1,15 +1,15 @@
 import mailchimpTransactional from "@mailchimp/mailchimp_transactional";
 
+export const TEMPLATE_SLUGS = {
+  SUBMISSION_RECEIPT: "aiffa-submissionthankyouemail",
+  CONTACT_RECEIPT: "aiffa-contactusthankyouemail",
+  MEMBERSHIP_RECEIPT: "aiffa-membershipthankyouemail",
+};
+
 const apiKey = process.env.MAILCHIMP_TX_API_KEY || "";
 const fromEmail = process.env.MAIL_FROM_EMAIL || "";
 const fromName = process.env.MAIL_FROM_NAME || "";
 const adminEmail = process.env.MAILCHIMP_TO_ADMIN_EMAIL || ""; // optional
-const submissionConfirmationTemplate =
-  process.env.MC_TEMPLATE_SLUG_SUBMISSION_RECEIPT || "";
-const contactConfirmationTemplate =
-  process.env.MC_TEMPLATE_SLUG_CONTACT_RECEIPT || "";
-const membershipConfirmationTemplate =
-  process.env.MC_TEMPLATE_SLUG_MEMBERSHIP_RECEIPT || "";
 
 export const mandrill = mailchimpTransactional(apiKey);
 
@@ -32,10 +32,6 @@ export async function sendSubmissionReceipt(
     requireEnv("MAILCHIMP_TX_API_KEY", apiKey);
     requireEnv("MAIL_FROM_EMAIL", fromEmail);
     requireEnv("MAIL_FROM_NAME", fromName);
-    requireEnv(
-      "MC_TEMPLATE_SLUG_SUBMISSION_RECEIPT",
-      submissionConfirmationTemplate,
-    );
 
     const to = [{ email, type: "to" as const }];
 
@@ -46,7 +42,7 @@ export async function sendSubmissionReceipt(
     }
 
     const res = await mandrill.messages.sendTemplate({
-      template_name: submissionConfirmationTemplate,
+      template_name: TEMPLATE_SLUGS.SUBMISSION_RECEIPT,
       template_content: [], // required by Mandrill API (can be empty)
       message: {
         from_email: fromEmail,
@@ -85,7 +81,6 @@ export async function sendContactFormSubmissionReceipt(
     requireEnv("MAILCHIMP_TX_API_KEY", apiKey);
     requireEnv("MAIL_FROM_EMAIL", fromEmail);
     requireEnv("MAIL_FROM_NAME", fromName);
-    requireEnv("MC_TEMPLATE_SLUG_CONTACT_RECEIPT", contactConfirmationTemplate);
     const to = [{ email: email, type: "to" as const }];
 
     if (adminEmail) {
@@ -93,7 +88,7 @@ export async function sendContactFormSubmissionReceipt(
     }
 
     const res = await mandrill.messages.sendTemplate({
-      template_name: contactConfirmationTemplate,
+      template_name: TEMPLATE_SLUGS.CONTACT_RECEIPT,
       template_content: [], // required by Mandrill API (can be empty)
       message: {
         from_email: fromEmail,
@@ -130,10 +125,6 @@ export async function sendMembershipFormSubmissionReceipt(
     requireEnv("MAILCHIMP_TX_API_KEY", apiKey);
     requireEnv("MAIL_FROM_EMAIL", fromEmail);
     requireEnv("MAIL_FROM_NAME", fromName);
-    requireEnv(
-      "MC_TEMPLATE_SLUG_MEMBERSHIP_RECEIPT",
-      membershipConfirmationTemplate,
-    );
     const to = [{ email: email, type: "to" as const }];
 
     if (adminEmail) {
@@ -141,7 +132,7 @@ export async function sendMembershipFormSubmissionReceipt(
     }
 
     const res = await mandrill.messages.sendTemplate({
-      template_name: membershipConfirmationTemplate,
+      template_name: TEMPLATE_SLUGS.MEMBERSHIP_RECEIPT,
       template_content: [], // required by Mandrill API (can be empty)
       message: {
         from_email: fromEmail,
