@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Instagram, Twitter } from "lucide-react"
+import { Facebook, Instagram, Linkedin, X } from "lucide-react"
 
 const festivalLinks = [
   { label: "About", href: "/about" },
@@ -49,13 +49,22 @@ export function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
+                href="https://www.linkedin.com/company/arab-international-film-festival-of-australia/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-champagne/40 hover:text-primary transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-champagne/40 hover:text-primary transition-colors"
                 aria-label="Twitter"
               >
-                <Twitter className="w-5 h-5" />
+                <X className="w-5 h-5" />
               </a>
             </div>
           </div>

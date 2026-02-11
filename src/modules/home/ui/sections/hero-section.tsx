@@ -35,7 +35,7 @@ export function HeroSection() {
       {/* LOGO SECTION */}
       <div
         className="w-full pt-2 pb-0"
-        style={{ backgroundColor: "#ffffff" }} 
+        style={{ backgroundColor: "#000000" }} 
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
           <Image
