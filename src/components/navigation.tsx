@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Image from "next/image";
 
 const navItems = [
   { label: "Programs", href: "/program" },
@@ -25,17 +26,16 @@ export function Navigation() {
       {/* Logo - Fixed at far left corner */}
       <Link 
         href="/" 
-        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex items-center gap-2"
+        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex items-center"
       >
-        <span 
-          className="font-serif text-xl font-bold text-primary tracking-wide inline-block" 
-          style={{ 
-            transform: 'scale(1.82)',
-            transformOrigin: 'left center'
-          }}
-        >
-          AIFFA
-        </span>
+        <Image
+          src="/images/aiffalogo-bg.jpeg"
+          alt="AIFFA Logo"
+          width={120} 
+          height={40} 
+          className="h-auto w-[100px] sm:w-[130px]" // Use Tailwind to control responsive sizing
+          priority
+        />
       </Link>
       
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
