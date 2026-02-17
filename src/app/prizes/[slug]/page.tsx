@@ -1,5 +1,5 @@
 import PrizeCategoryPage from "@/modules/prizes/ui/pages/prize-category-page"
-import { prizeCategories } from "@/modules/prizes/ui/pages/prizes-page"
+import { prizeCategories } from "../../../modules/prizes/data/prize-categories"
 
 export function generateStaticParams() {
   return prizeCategories.map((category) => ({

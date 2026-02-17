@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { prizeCategories } from "./prizes-page"
+import { prizeCategories } from "../../data/prize-categories"
 
 interface PrizeCategoryPageProps {
   slug: string
