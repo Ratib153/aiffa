@@ -39,7 +39,7 @@ export function HeroSection() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
           <Image
-            src="/images/aiffa-logo-full.png"
+            src="/images/aiffalogo-bg.png"  
             alt="AIFFA – Arab International Film Festival of Australia"
             width={520}
             height={200}

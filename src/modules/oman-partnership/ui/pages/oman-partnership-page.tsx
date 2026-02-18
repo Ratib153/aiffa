@@ -176,8 +176,8 @@ export default function OmanPartnershipPage() {
           </p>
           <div className="flex items-center justify-center gap-12">
             <Image
-              src="/images/iffa.png"
-              alt="AIFFA Awards Logo"
+              src="/images/iffa-logo.png"
+              alt="IFFA Logo"
               width={200}
               height={100}
               className="h-24 w-auto object-contain"
