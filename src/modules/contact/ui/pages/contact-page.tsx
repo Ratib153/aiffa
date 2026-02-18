@@ -3,6 +3,13 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Mail, MapPin, Phone, Facebook, Instagram, Twitter, AlertCircle, CheckCircle } from "lucide-react"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select"
+import { phonePrefixes } from "@/lib/phone-prefixes"
 
 const contactInfo = [
   {
@@ -47,11 +54,14 @@ const subjectOptions = [
   "Other",
 ]
 
+
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
-    phone: "",
+    phonePrefix: "+61",
+    phoneNumber: "",
     subject: "General Inquiry",
     message: "",
   })
@@ -63,15 +73,24 @@ export default function ContactPage() {
     setLoading(true)
     setMessage(null)
     try {
+      const isOtherPrefix = formData.phonePrefix === "+other"
+      const phone = formData.phoneNumber.trim()
+        ? isOtherPrefix
+          ? formData.phoneNumber.replace(/\s/g, "")
+          : `${formData.phonePrefix}${formData.phoneNumber.replace(/\D/g, "")}`
+        : ""
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          phone,
+        }),
       })
       const data = await response.json()
       if (response.ok) {
         setMessage({ type: 'success', text: 'Message sent successfully! We\'ll get back to you soon.' })
-        setFormData({ fullName: "", email: "", phone: "", subject: "General Inquiry", message: "" })
+        setFormData({ fullName: "", email: "", phonePrefix: "+61", phoneNumber: "", subject: "General Inquiry", message: "" })
       } else {
         setMessage({ type: 'error', text: data.error || 'Failed to send message' })
       }
@@ -118,11 +137,10 @@ export default function ContactPage() {
           </div>
           <form onSubmit={handleSubmit} className="glass-card p-8">
             {message && (
-              <div className={`mb-6 p-4 border rounded-lg flex gap-3 ${
-                message.type === 'success' 
-                  ? 'bg-green-500/10 border-green-500/30' 
-                  : 'bg-red-500/10 border-red-500/30'
-              }`}>
+              <div className={`mb-6 p-4 border rounded-lg flex gap-3 ${message.type === 'success'
+                ? 'bg-green-500/10 border-green-500/30'
+                : 'bg-red-500/10 border-red-500/30'
+                }`}>
                 {message.type === 'success' ? (
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 ) : (
@@ -164,19 +182,47 @@ export default function ContactPage() {
                   placeholder="your@email.com"
                 />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label htmlFor="phone" className="block text-foreground text-sm mb-2">
                   Phone
                 </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  disabled={loading}
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-background border border-primary/20 px-4 py-3 text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
-                  placeholder="+61 4xx xxx xxx"
-                />
+                <div className="flex gap-2">
+                  <Select
+                    value={formData.phonePrefix}
+                    onValueChange={(v) => setFormData({ ...formData, phonePrefix: v })}
+                    disabled={loading}
+                  >
+                    <SelectTrigger
+                      id="phonePrefix"
+                      aria-label="Country code"
+                      className="w-24 shrink-0 bg-background border border-primary/20 px-3 py-3 text-foreground focus:border-primary focus:ring-primary/20 disabled:opacity-50 [&>svg]:ml-0"
+                    >
+                      {/* Chỉ hiển thị mã khi đã chọn */}
+                      <span className="truncate">{formData.phonePrefix}</span>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {phonePrefixes.map((p) => (
+                        <SelectItem key={p.value} value={p.value}>
+                          {p.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <input
+                    type="tel"
+                    id="phone"
+                    disabled={loading}
+                    value={formData.phoneNumber}
+                    onChange={(e) => {
+                      const raw = e.target.value
+                      const isOther = formData.phonePrefix === "+other"
+                      const filtered = isOther ? raw.replace(/[^\d+\s]/g, "").slice(0, 20) : raw.replace(/\D/g, "").slice(0, 15)
+                      setFormData({ ...formData, phoneNumber: filtered })
+                    }}
+                    className="flex-1 min-w-0 bg-background border border-primary/20 px-4 py-3 text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
+                    placeholder="412 345 678"
+                  />
+                </div>
               </div>
             </div>
             <div className="mb-4">
