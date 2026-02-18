@@ -29,7 +29,7 @@ export function Navigation() {
         className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex items-center"
       >
         <Image
-          src="/images/aiffalogo-bg.jpeg"
+          src="/images/aiffalogo-bg.png"
           alt="AIFFA Logo"
           width={120} 
           height={40} 
