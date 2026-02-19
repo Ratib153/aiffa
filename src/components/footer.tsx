@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Instagram, Linkedin, X } from "lucide-react"
+import { Facebook, Instagram, Linkedin, X, Youtube } from "lucide-react"
 import Image from "next/image";
 
 
@@ -40,7 +40,7 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-4 pt-2">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61588401630735"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-champagne/40 hover:text-primary transition-colors"
@@ -67,13 +67,13 @@ export function Footer() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://www.youtube.com/channel/UCO2xJ6Cw1-5o1iolIJtO4yQ"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-champagne/40 hover:text-primary transition-colors"
-                aria-label="Twitter"
+                aria-label="Youtube"
               >
-                <X className="w-5 h-5" />
+                <Youtube className="w-5 h-5" />
               </a>
             </div>
           </div>
