@@ -14,12 +14,12 @@ const SubmissionsForm = dynamic(() => import("./submissions-form").then((m) => m
 })
 
 const eligibilityRequirements = [
-  "Films must be completed after January 1, 2025.",
-  "Director must be of Arab heritage OR film must have significant Arab content.",
-  "Films can be in any language (with English subtitles if not in English or Arabic).",
-  "All genres and formats accepted (narrative, documentary, experimental, animation).",
-  "Films must not have been commercially released or screened in Australia.",
-  "Films can be submitted in digital formats (DCP, ProRes, or high-quality MP4).",
+  "Film projects completed from 1 January 2025 onwards are eligible.",
+  "The film project should reflect Arab heritage, culture, stories, or themes in a meaningful way.",
+  "Film projects may be in any language. English subtitles are required if the film is not in English or Arabic.",
+  "All genres and formats are welcome, including narrative, documentary, experimental, and animation.",
+  "We welcome film projects that are seeking their Australian premiere or wider exposure in Australia.",
+  "Submissions may be provided in digital formats such as DCP, ProRes, or high-quality MP4.",
 ]
 
 const importantDates = [
@@ -117,19 +117,19 @@ export default function SubmissionsPage() {
 
       {/* Eligibility Requirements */}
       <section className="py-24 bg-secondary">
-        <div className="w-full">
-          <div className="text-center mb-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-6xl mx-auto">
+          <div className="text-center mb-16 px-6 sm:px-8 lg:px-12">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-champagne">
               Eligibility Requirements
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full px-6 sm:px-8 lg:px-12">
             {eligibilityRequirements.map((requirement) => (
               <div
                 key={requirement}
                 className="flex items-start gap-4 glass-card p-8 min-h-[120px]"
               >
-                <div className="flex-shrink-0 w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center mt-1">
+                <div className="shrink-0 w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center mt-1">
                   <Check className="w-5 h-5 text-primary" />
                 </div>
                 <p className="text-champagne/80 text-base leading-relaxed">{requirement}</p>
@@ -137,7 +137,7 @@ export default function SubmissionsPage() {
             ))}
           </div>
         </div>
-      </section>      
+      </section>
 
       {/* Selection Process */}
       <section className="py-24 bg-secondary">
@@ -167,8 +167,8 @@ export default function SubmissionsPage() {
           </div>
         </div>
       </section>
-          
-    <SubmissionsForm/>
+
+      <SubmissionsForm />
 
     </main>
   )
